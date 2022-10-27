@@ -41,3 +41,11 @@
     font-size: 30px;
     display: none;
 }
+
+.P-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: darkblue;
+}

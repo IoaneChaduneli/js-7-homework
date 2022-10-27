@@ -41,8 +41,22 @@ function createPostrenderlogic(item){
     divWraper.appendChild(h2post);
     divWraper.appendChild(deletebutton);
   
+    
+    deletebutton.addEventListener('click', function(event){
+        event.stopPropagation();
+        const id=event.target.getAttribute('data-id');
+        let url='https://jsonplaceholder.typicode.com/posts/${id}';
+    })
 
-
+    deletebutton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        const id = event.target.getAttribute("data-id");
+        let url = `https://jsonplaceholder.typicode.com/posts/${id}`;
+        fetch(url, {
+          method: "DELETE",
+        }).then(() => divWraper.remove());
+      });
+      
     mainWraper.appendChild(divWraper);
 
     overlayClose.addEventListener('click', function(){
@@ -57,6 +71,7 @@ function createPostrenderlogic(item){
     let url="http://jsonplaceholder.typicode.com/posts/${id}";
     ajax(url, function(dataresponse){
         let p=document.createElement('p');
+        p.classList.add('P-style');
         p.innerText=item.body;
         overlayContent.appendChild(p);
     })
